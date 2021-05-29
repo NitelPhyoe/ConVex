@@ -143,6 +143,11 @@ anymatch@~3.1.1:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+async-lz-string@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/async-lz-string/-/async-lz-string-1.0.3.tgz#eb0c8161f8743907c898667b1416e99662cd3407"
+  integrity sha512-0LoDdGn6OZaBS1EFcSRFe0ZAfDy+kqg64cCdHf91sVQTh34UJcPBvHnA6EYCH365DMwzDn9nz1pkupWXaEZxfA==
+
 at-least-node@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/at-least-node/-/at-least-node-1.0.0.tgz#602cd4b46e844ad4effc92a8011a3c46e0238dc2"
