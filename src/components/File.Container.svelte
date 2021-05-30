@@ -1,8 +1,35 @@
 <script lang="ts">
-	const title = "To Other";
-	let result: string;
-	let resultList: string[];
-	let file: FileList;
+	import Button from "./Button.svelte";
+	import Skeleton from "./Skeleton.svelte";
+	import { compressor, splitString } from "../utils/convertor";
+
+	export const title = "To Other";
+	export const fileLabel = "Choose Your File";
+
+	let files: FileList;
+	let selectedFile: File;
+	let promise: Promise<string>;
+	let showResult = false;
+	let denyCvt = true;
+	let denyCpy = true;
+
+	// Check file exist
+	$: if (files) {
+		selectedFile = files[0];
+		denyCvt = false;
+	}
+
+	// Check result exist
+	$: if (showResult) {
+		denyCpy = false;
+	}
+
+	const convertHandler = () => {
+		promise = compressor(selectedFile);
+		showResult = true;
+	};
+
+	const copyHandler = () => {};
 </script>
 
 <!-- Container -->
@@ -12,11 +39,59 @@
 	<!-- Title -->
 	<div class="text-2xl font-bold">{title}</div>
 	<!-- Body -->
-	<div class=" pt-2 pb-2">body</div>
+	<div
+		class=" pt-2 pb-2 flex flex-col md:flex-row md:items-end md:space-x-2 space-y-2"
+	>
+		<div class="flex flex-col">
+			<label for="cfile" class="pb-2">
+				{fileLabel}
+			</label>
+			<input
+				bind:files
+				id="cfile"
+				type="file"
+				class="focus:outline-none focus:ring-2 focus:ring-yellow-200 border border-gray-200 rounded-md max-w-sm "
+			/>
+		</div>
+		<div class="space-x-2">
+			<Button before="Convert" click={convertHandler} disable={denyCvt} />
+			<Button
+				before="Copy"
+				after="Copied"
+				click={copyHandler}
+				disable={denyCpy}
+			/>
+		</div>
+	</div>
 	<!-- Result -->
-	{#if result}
+
+	{#if showResult}
 		<div
 			class=" pt-2 pb-2 overflow-y-scroll  max-w-xs max-h-36 md:max-w-lg lg:max-w-xl space-y-2"
-		/>
+		>
+			{#await promise}
+				<Skeleton />
+				<Skeleton />
+			{:then result}
+				{#each splitString(result, 1200) as chunk, i}
+					<!-- Sub Container -->
+					<div
+						class=" flex justify-between items-center bg-yellow-300 rounded-lg"
+					>
+						<div
+							class="bg-gray-100 text-yellow-500 text-base text-center shadow-md  px-2.5 py-0.5 m-1 rounded-xl cursor-default"
+						>
+							{++i}
+						</div>
+						<div class="truncate">{chunk}</div>
+						<div class="mx-1 ">
+							<Button before="Copy" after="Copied" click={() => {}} />
+						</div>
+					</div>
+				{/each}
+			{:catch e}
+				Error: {e}
+			{/await}
+		</div>
 	{/if}
 </div>

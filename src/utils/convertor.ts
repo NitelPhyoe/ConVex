@@ -1,3 +1,5 @@
+import { Buffer } from "buffer";
+
 type Meta = {
 	name: string;
 	type: string;
@@ -25,6 +27,8 @@ export const compressor = async (file: File) =>
 
 			resolve(cpx);
 		} catch (error) {
+			console.log(error);
+
 			reject("File Invalid");
 		}
 	});
@@ -51,3 +55,8 @@ export const decompressor = async (encStr: string) =>
 			reject("Encoded String Invalid");
 		}
 	});
+
+export const splitString = (string: String, size: number): string[] => {
+	var re = new RegExp(".{1," + size + "}", "g");
+	return string.match(re) || [];
+};
