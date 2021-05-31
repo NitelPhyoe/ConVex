@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from "./Button.svelte";
 	import BtnSkeleton from "./Btn.Skeleton.svelte";
+	import Error from "./Error.svelte";
 	import { decompressor, downloadBlob } from "../utils/convertor";
 	import type { DpxFile } from "../utils/convertor";
 
@@ -44,11 +45,7 @@
 				{:then { blob, meta: { name } }}
 					<Button before="Download" click={() => downloadBlob(blob, name)} />
 				{:catch e}
-					<div
-						class="text-red-500 text-sm bg-yellow-100 rounded-lg shadow-md p-1"
-					>
-						Error: {e}
-					</div>
+					<Error error={e} />
 				{/await}
 			{/if}
 		</div>

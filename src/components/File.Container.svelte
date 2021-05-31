@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from "./Button.svelte";
 	import Skeleton from "./SubCon.Skeleton.svelte";
+	import Error from "./Error.svelte";
 	import { compressor, splitString } from "../utils/convertor";
 
 	export const title = "To Other";
@@ -99,11 +100,7 @@
 					</div>
 				{/each}
 			{:catch e}
-				<div
-					class="text-red-500 text-sm bg-yellow-100 rounded-lg shadow-md p-1"
-				>
-					Error: {e}
-				</div>
+				<Error error={e} />
 			{/await}
 		</div>
 	{/if}

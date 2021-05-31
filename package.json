@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "license": "GPL-3.0-only",
   "author": "Nitel Phyoe",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NitelPhyoe/ConVex.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
