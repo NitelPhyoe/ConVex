@@ -13,5 +13,7 @@ deploy:
   # Set in the Travis settings page of your repository, as a secure variable.
   github_token: $GITHUB_TOKEN
   keep_history: true
+  target_branch: gh-pages
   on:
-    branch: gh-pages
+    # Which branch on commit/push will trigger deployment
+    branch: master
