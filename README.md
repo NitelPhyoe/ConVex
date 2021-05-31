@@ -9,9 +9,7 @@
   </a>
 </p>
 
-> File sharing via txt! Make for offline circumstance🙄
-
-### 🏠 [Homepage](https://nitelphyoe.github.io/ConVex/)
+> 😲File sharing via txt! Make for offline circumstance🙄
 
 ## Install
 
