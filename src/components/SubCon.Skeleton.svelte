@@ -1,4 +1,4 @@
-<!-- Skeleton -->
+<!--Sub Container Skeleton -->
 <div class="animate-pulse font-sans flex flex-col rounded-lg">
 	<div class="flex items-center m-1">
 		<div class="h-7 w-7 bg-gray-50 rounded-full" />

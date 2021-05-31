@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from "./Button.svelte";
-	import Skeleton from "./Skeleton.svelte";
+	import Skeleton from "./SubCon.Skeleton.svelte";
 	import { compressor, splitString } from "../utils/convertor";
 
 	export const title = "To Other";
@@ -12,11 +12,13 @@
 	let showResult = false;
 	let denyCvt = true;
 	let denyCpy = true;
+	let resetCpyTxt = false;
 
 	// Check file exist
 	$: if (files) {
 		selectedFile = files[0];
 		denyCvt = false;
+		resetCpyTxt = false;
 	}
 
 	// Check result exist
@@ -27,9 +29,11 @@
 	const convertHandler = () => {
 		promise = compressor(selectedFile);
 		showResult = true;
+		resetCpyTxt = true;
 	};
 
-	const copyHandler = () => {};
+	const copyHandler = async (txt: string) =>
+		await navigator.clipboard.writeText(txt ?? (await promise));
 </script>
 
 <!-- Container -->
@@ -56,18 +60,19 @@
 		<div class="space-x-2">
 			<Button before="Convert" click={convertHandler} disable={denyCvt} />
 			<Button
-				before="Copy"
+				before="Copy All"
 				after="Copied"
 				click={copyHandler}
 				disable={denyCpy}
+				resetTxt={resetCpyTxt}
 			/>
 		</div>
 	</div>
-	<!-- Result -->
 
+	<!-- Result -->
 	{#if showResult}
 		<div
-			class=" pt-2 pb-2 overflow-y-scroll  max-w-xs max-h-36 md:max-w-lg lg:max-w-xl space-y-2"
+			class=" py-2 overflow-y-scroll  max-w-xs max-h-36 md:max-w-lg lg:max-w-xl space-y-2"
 		>
 			{#await promise}
 				<Skeleton />
@@ -85,12 +90,20 @@
 						</div>
 						<div class="truncate">{chunk}</div>
 						<div class="mx-1 ">
-							<Button before="Copy" after="Copied" click={() => {}} />
+							<Button
+								before="Copy"
+								after="Copied"
+								click={() => copyHandler(chunk)}
+							/>
 						</div>
 					</div>
 				{/each}
 			{:catch e}
-				Error: {e}
+				<div
+					class="text-red-500 text-sm bg-yellow-100 rounded-lg shadow-md p-1"
+				>
+					Error: {e}
+				</div>
 			{/await}
 		</div>
 	{/if}

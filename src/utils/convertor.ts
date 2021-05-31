@@ -60,3 +60,16 @@ export const splitString = (string: String, size: number): string[] => {
 	var re = new RegExp(".{1," + size + "}", "g");
 	return string.match(re) || [];
 };
+
+// I copied from 'https://github.com/sveltejs/svelte/blob/master/site/src/routes/repl/_utils/downloadBlob.js'
+export const downloadBlob = (blob: Blob, filename: string) => {
+	const url = URL.createObjectURL(blob);
+	const link = document.createElement("a");
+	link.href = url;
+	link.download = filename;
+	link.style.display = "none";
+	document.body.appendChild(link);
+	link.click();
+	URL.revokeObjectURL(url);
+	link.remove();
+};
