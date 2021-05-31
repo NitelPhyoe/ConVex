@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 
-	// import { registerSW } from "virtual:pwa-register";
+	import { registerSW } from "virtual:pwa-register";
 
 	const year = new Date().getFullYear();
 	const name = "ConVex";
+
+	onMount(() => {
+		registerSW();
+	});
 </script>
 
 <div
