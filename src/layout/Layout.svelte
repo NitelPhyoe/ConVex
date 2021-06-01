@@ -17,11 +17,24 @@
 </svelte:head>
 
 <div
-	class="bg-floating-cogs bg-gray-700 text-white font-mono h-screen w-screen overflow-y-scroll grid grid-cols-1 place-items-center "
+	class="bg-floating-cogs bg-gray-700 text-white font-mono flex flex-col h-screen justify-between items-center overflow-y-scroll"
 >
 	<Header />
 
-	<slot />
-
+	<div
+		class="w-full flex flex-wrap lg:flex-nowrap justify-center items-center space-y-4 lg:space-y-0 lg:space-x-4 "
+	>
+		<slot />
+		<!-- <div
+			class="bg-indigo-500 mx-3 md:mx-0 w-full max-w-sm md:max-w-lg lg:max-w-lg xl:max-w-xl h-56"
+		>
+			container
+		</div>
+		<div
+			class="bg-indigo-500 mx-3 md:mx-0 w-full max-w-sm md:max-w-lg lg:max-w-lg xl:max-w-xl h-56"
+		>
+			container
+		</div> -->
+	</div>
 	<Footer />
 </div>

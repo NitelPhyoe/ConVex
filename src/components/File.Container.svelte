@@ -39,7 +39,7 @@
 
 <!-- Container -->
 <div
-	class="bg-yellow-400 p-3 my-2 w-full max-w-xs sm:max-w-md md:max-w-xl space-y-2 divide-y-2 divide-yellow-600 divide-dashed shadow-xl rounded-xl"
+	class="bg-yellow-400 p-3 mx-3 md:mx-0 w-full max-w-sm md:max-w-lg lg:max-w-lg xl:max-w-xl divide-y-2 divide-yellow-600 divide-dashed space-y-2 shadow-xl rounded-xl"
 >
 	<!-- Title -->
 	<div class="text-2xl font-bold">{title}</div>
@@ -58,7 +58,9 @@
 				class="focus:outline-none focus:ring-2 focus:ring-yellow-200 border border-gray-200 rounded-md max-w-sm "
 			/>
 		</div>
-		<div class="space-x-2">
+		<div
+			class="w-full space-y-2 md:flex md:flex-col md:items-center lg:space-x-2 xl:justify-center xl:space-y-0  xl:flex-row"
+		>
 			<Button before="Convert" click={convertHandler} disable={denyCvt} />
 			<Button
 				before="Copy All"
@@ -74,6 +76,7 @@
 	{#if showResult}
 		<div class="py-2 max-h-36 overflow-y-scroll space-y-2">
 			{#await promise}
+				<Skeleton />
 				<Skeleton />
 				<Skeleton />
 			{:then result}

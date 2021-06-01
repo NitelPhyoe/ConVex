@@ -27,7 +27,7 @@
 
 <!-- Container -->
 <div
-	class="bg-yellow-400 p-3 my-2 w-full max-w-xs sm:max-w-md md:max-w-xl space-y-2 divide-y-2 divide-yellow-600 divide-dashed shadow-xl rounded-xl"
+	class="bg-yellow-400 p-3 mx-3 md:mx-0 w-full max-w-sm md:max-w-lg lg:max-w-lg xl:max-w-xl divide-y-2 divide-yellow-600 divide-dashed space-y-2 shadow-xl rounded-xl"
 >
 	<!-- Title -->
 	<div class="text-2xl font-bold">{title}</div>
