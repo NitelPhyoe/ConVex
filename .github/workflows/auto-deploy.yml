@@ -1,4 +1,4 @@
-name: Github CI/CD
+name: 🤖 Github CI/CD
 on:
   push:
     branches:

@@ -16,7 +16,7 @@
 
 ```sh
 # Install Dependency
-yarn install
+yarn
 
 # Run Development Server
 yarn dev

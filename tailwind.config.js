@@ -7,6 +7,9 @@ module.exports = {
 			backgroundImage: (theme) => ({
 				"floating-cogs": "url('/images/floating-cogs.svg')",
 			}),
+			fontFamily: {
+				zcool: ['"ZCOOL KuaiLe"', "cursive"],
+			},
 		},
 	},
 	variants: {

@@ -1,13 +1,11 @@
 import { Buffer } from "buffer";
 
-type Meta = {
-	name: string;
-	type: string;
-};
-
 export type DpxFile = {
 	blob: Blob;
-	meta: Meta;
+	meta: {
+		name: string;
+		type: string;
+	};
 };
 
 export const compressor = async (file: File) =>
