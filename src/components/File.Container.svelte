@@ -4,8 +4,8 @@
 	import Error from "./Error.svelte";
 	import { compressor, splitString } from "../utils/convertor";
 
-	export const title = "To Other";
-	export const fileLabel = "Choose Your File";
+	export let title = "To Other";
+	export let fileLabel = "Choose Your File";
 
 	let files: FileList;
 	let selectedFile: File;
@@ -39,7 +39,7 @@
 
 <!-- Container -->
 <div
-	class="bg-yellow-400 p-3 mt-5  space-y-2 divide-y-2 divide-yellow-600 divide-dashed shadow-xl rounded-xl"
+	class="bg-yellow-400 p-3 my-2 w-full max-w-xs sm:max-w-md md:max-w-xl space-y-2 divide-y-2 divide-yellow-600 divide-dashed shadow-xl rounded-xl"
 >
 	<!-- Title -->
 	<div class="text-2xl font-bold">{title}</div>
@@ -72,9 +72,7 @@
 
 	<!-- Result -->
 	{#if showResult}
-		<div
-			class=" py-2 overflow-y-scroll  max-w-xs max-h-36 md:max-w-lg lg:max-w-xl space-y-2"
-		>
+		<div class="py-2 max-h-36 overflow-y-scroll space-y-2">
 			{#await promise}
 				<Skeleton />
 				<Skeleton />

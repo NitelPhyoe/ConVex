@@ -5,7 +5,7 @@
 	import { decompressor, downloadBlob } from "../utils/convertor";
 	import type { DpxFile } from "../utils/convertor";
 
-	export const title = "From Other";
+	export let title = "From Other";
 
 	let denyRvt = true;
 	let showDownload = false;
@@ -27,7 +27,7 @@
 
 <!-- Container -->
 <div
-	class="bg-yellow-400 p-3 mt-5  space-y-2 divide-y-2 divide-yellow-600 divide-dashed shadow-xl rounded-xl"
+	class="bg-yellow-400 p-3 my-2 w-full max-w-xs sm:max-w-md md:max-w-xl space-y-2 divide-y-2 divide-yellow-600 divide-dashed shadow-xl rounded-xl"
 >
 	<!-- Title -->
 	<div class="text-2xl font-bold">{title}</div>
@@ -35,7 +35,7 @@
 	<div class="flex flex-col">
 		<textarea
 			bind:value={rcode}
-			class="w-80 h-52 max-w-sm md:w-96 md:max-w-lg lg:w-96 lg:h-52 lg:max-w-xl max-h-60 mt-4 mb-3 text-gray-500 text-sm resize border rounded-xl"
+			class="h-56 text-gray-500 mt-4 mb-3 text-sm resize-none border rounded-xl"
 		/>
 		<div class="flex flex-row justify-between items-center">
 			<Button before="Revert" click={revertHandler} disable={denyRvt} />
