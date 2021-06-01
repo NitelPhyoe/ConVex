@@ -5,7 +5,7 @@
   "author": "Nitel Phyoe",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NitelPhyoe/ConVex.git"
+    "url": "git+https://github.com/NitelPhyoe/ConVex.git"
   },
   "scripts": {
     "dev": "vite",
