@@ -1,4 +1,4 @@
-name: 🤖 Github CI/CD
+name: 🤖Bot CI/CD
 on:
   push:
     branches:
