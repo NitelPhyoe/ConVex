@@ -1,5 +1,5 @@
 export default {
-	name: "ConVex",
+	name: "ConVex - Dev",
 	developer: "Nitel Phyoe",
 	year: new Date().getFullYear(),
 };
