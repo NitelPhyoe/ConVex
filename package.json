@@ -8,7 +8,7 @@
     "url": "git+https://github.com/NitelPhyoe/ConVex.git"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 4545",
     "build": "vite build",
     "serve": "vite preview"
   },

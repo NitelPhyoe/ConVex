@@ -12,7 +12,7 @@
 		<div class="inline-flex items-center  ">
 			<img
 				class="h-12 w-12 object-fill bg-gradient-to-tr from-yellow-700 to-yellow-400 rounded-full shadow-lg"
-				src="/ConVex/images/logo.png"
+				src="/images/logo.png"
 				alt="Logo"
 			/>
 			<div
