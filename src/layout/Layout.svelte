@@ -1,13 +1,7 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import { registerSW } from "virtual:pwa-register";
 	import Footer from "./Footer.svelte";
 	import Header from "./Header.svelte";
 	import config from "../utils/config";
-
-	onMount(() => {
-		registerSW();
-	});
 
 	const { name, developer } = config;
 </script>
