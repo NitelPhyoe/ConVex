@@ -5,6 +5,7 @@
 	import Layout from "./layout/Layout.svelte";
 	import CodeContainer from "./components/Code.Container.svelte";
 	import FileContainer from "./components/File.Container.svelte";
+	import Calculate from "./components/Co2.Calculate.svelte";
 
 	onMount(() => {
 		registerSW();
@@ -14,6 +15,7 @@
 <main>
 	<Layout>
 		<FileContainer />
-		<CodeContainer />
+		<!-- <CodeContainer /> -->
+		<Calculate />
 	</Layout>
 </main>

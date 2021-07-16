@@ -19,16 +19,6 @@
 		class="w-full flex flex-wrap lg:flex-nowrap justify-center items-center space-y-4 lg:space-y-0 lg:space-x-4 "
 	>
 		<slot />
-		<!-- <div
-			class="bg-indigo-500 mx-3 md:mx-0 w-full max-w-sm md:max-w-lg lg:max-w-lg xl:max-w-xl h-56"
-		>
-			container
-		</div>
-		<div
-			class="bg-indigo-500 mx-3 md:mx-0 w-full max-w-sm md:max-w-lg lg:max-w-lg xl:max-w-xl h-56"
-		>
-			container
-		</div> -->
 	</div>
 	<Footer />
 </div>
