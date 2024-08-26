@@ -1,0 +1,15 @@
+{
+  "name": "convex_wasm",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "convex_wasm_bg.wasm",
+    "convex_wasm.js",
+    "convex_wasm.d.ts"
+  ],
+  "main": "convex_wasm.js",
+  "types": "convex_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
