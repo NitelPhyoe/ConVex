@@ -3,7 +3,7 @@ use js_sys::Uint8Array;
 use lzma_rs::{lzma_compress, lzma_decompress};
 use serde::{Deserialize, Serialize};
 use serde_json;
-use std::io::{Cursor, Read, Write};
+use std::io::Cursor;
 use wasm_bindgen::prelude::*;
 
 #[derive(Serialize, Deserialize)]

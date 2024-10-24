@@ -2,7 +2,10 @@
   import Button from "./Button.svelte";
   import Skeleton from "./SubCon.Skeleton.svelte";
   import Error from "./Error.svelte";
-  import { compressor, splitString } from "../utils/convertor";
+  import { onDestroy, onMount } from "svelte";
+  import config from "../utils/config";
+  import { chunkString, splitString } from "../utils/convertor.old";
+  import { writable } from "svelte/store";
 
   export let title = "To Other";
   export let fileLabel = "Choose Your File";
@@ -14,6 +17,30 @@
   let denyCvt = true;
   let denyCpy = true;
   let resetCpyTxt = false;
+
+  let worker: Worker;
+  let compressedBase64: string = "";
+  let errorMessage: string = "";
+  let isProcessing = writable(false); // Reactive variable for processing state
+
+  onMount(() => {
+    worker = new Worker(config.worker_url, { type: "module" });
+
+    worker.onmessage = (e: MessageEvent) => {
+      const { type, data, error } = e.data;
+
+      isProcessing.set(false); // Processing is complete when message is received
+
+      if (error) {
+        errorMessage = `Error: ${error}`;
+        return;
+      }
+
+      if (type === "compress") {
+        compressedBase64 = data as string;
+      }
+    };
+  });
 
   // Check file exist
   $: if (files) {
@@ -27,14 +54,30 @@
     denyCpy = false;
   }
 
-  const convertHandler = () => {
-    promise = compressor(selectedFile);
+  const convertHandler = async () => {
+    errorMessage = "";
+
+    const arrayBuffer = await selectedFile.arrayBuffer();
+    const uint8Array = new Uint8Array(arrayBuffer);
+
+    isProcessing.set(true); // Set processing state to true before starting compression
+
+    worker.postMessage({
+      type: "compress",
+      data: uint8Array,
+      filename: selectedFile.name,
+    });
+
     showResult = true;
     resetCpyTxt = true;
   };
 
   const copyHandler = async (txt: string) =>
-    await navigator.clipboard.writeText(txt ?? (await promise));
+    await navigator.clipboard.writeText(txt ?? compressedBase64);
+
+  onDestroy(() => {
+    worker.terminate(); // Terminate the worker when the component is destroyed
+  });
 </script>
 
 <!-- Container -->
@@ -72,16 +115,26 @@
     </div>
   </div>
 
+  {#if $isProcessing}
+    <p>Processing... Please wait.</p>
+    <!-- Show processing message -->
+  {/if}
+
+  {#if compressedBase64}
+    <p>Compressed Base64 String Length: {compressedBase64.length}</p>
+  {/if}
+
   <!-- Result -->
   {#if showResult}
     <div class="py-2 max-h-36 overflow-y-scroll space-y-2">
-      {#await promise}
+      {#if $isProcessing}
         <Skeleton />
         <Skeleton />
         <Skeleton />
-      {:then result}
-        {result.length}
-        {#each splitString(result, 1200) as chunk, i}
+      {:else if errorMessage.length > 0}
+        <Error error={errorMessage} />
+      {:else}
+        {#each chunkString(compressedBase64, 1200) as chunk, i}
           <!-- Sub Container -->
           <div
             class=" flex justify-between items-center bg-yellow-300 rounded-lg"
@@ -101,9 +154,7 @@
             </div>
           </div>
         {/each}
-      {:catch e}
-        <Error error={e} />
-      {/await}
+      {/if}
     </div>
   {/if}
 </div>
